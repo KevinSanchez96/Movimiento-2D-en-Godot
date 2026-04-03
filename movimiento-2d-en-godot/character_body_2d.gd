@@ -1,17 +1,15 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
+const SPEED = 260.0
+const JUMP_VELOCITY = -450.0
+const GRAVITY = 900.0
 
 const MAX_JUMPS = 2
-const MAX_TIEMPO_VUELO = 1.5
+const MAX_TIEMPO_VUELO = 1.2
 
 var volando = false
-var gravedad_volando = 30
 var jump_count = 0
 var tiempo_vuelo = 0
-var activar_vuelo = false
 
 func _physics_process(delta: float) -> void:
 	
@@ -24,7 +22,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 			tiempo_vuelo +=delta
 		else:
-			velocity += get_gravity() * delta
+			velocity.y += GRAVITY * delta
 		
 	if is_on_floor():
 		jump_count = 0
