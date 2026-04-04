@@ -20,12 +20,12 @@ scale = Vector2(0.515625, 0.53125)
 texture = ExtResource("2_0bqur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(157, 467.75)
+position = Vector2(158, 467)
 shape = SubResource("RectangleShape2D_r1iym")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 523)
+position = Vector2(538, 604)
 shape = SubResource("RectangleShape2D_b6dob")
 debug_color = Color(0, 0, 0.517647, 0.419608)
