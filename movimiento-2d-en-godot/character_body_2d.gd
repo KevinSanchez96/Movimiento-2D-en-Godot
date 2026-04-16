@@ -1,11 +1,18 @@
 extends CharacterBody2D
 
-const SPEED = 260.0
-const JUMP_VELOCITY = -850.0
-const GRAVITY = 2000.0
+@export_group("Movimiento")
+@export var SPEED = 260.0
 
-const MAX_JUMPS = 2
-const MAX_TIEMPO_VUELO = 1.2
+@export_group("Salto")
+@export var JUMP_VELOCITY = -850.0
+@export var MAX_JUMPS = 2
+
+@export_group("Gravedad")
+@export var GRAVITY = 2000.0
+@export var MULTIPL_CAIDA = 2.0
+
+@export_group("Vuelo")
+@export var MAX_TIEMPO_VUELO = 1.2
 
 var volando = false
 var jump_count = 0
@@ -18,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		jump_count += 1
 		velocity.y = JUMP_VELOCITY
 	#Se genera el estado de "volando" y se limita la velocidad en y
-	if Input.is_action_just_pressed("jump") and jump_count == 2 and not volando:
+	if jump_count == MAX_JUMPS :
 		volando = true
 	
 	#Es lo que sucede una vez esta en el aire . Si el estado "volando" esta activo , entonces empieza a contar "tiempo_vuelo"
@@ -31,7 +38,7 @@ func _physics_process(delta: float) -> void:
 			if velocity.y <0:
 				velocity.y += GRAVITY  * delta
 			else:
-				velocity.y += GRAVITY * 2 *delta
+				velocity.y += GRAVITY * MULTIPL_CAIDA *delta
 			
 	#Una vez llega al piso, se resetean valores
 	if is_on_floor():
