@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dcq4le7gw116b"]
 
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_8225k"]
+[ext_resource type="Script" path="res://Player.gd" id="1_8225k"]
 [ext_resource type="Texture2D" uid="uid://c0ysatnxdb5c7" path="res://icon.svg" id="2_0bqur"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1iym"]
@@ -11,17 +11,31 @@ size = Vector2(1061, 20)
 
 [node name="EscenaPrincipal" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_8225k")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(157, 468)
 scale = Vector2(0.515625, 0.53125)
 texture = ExtResource("2_0bqur")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(158, 467)
 shape = SubResource("RectangleShape2D_r1iym")
+
+[node name="StateMachine" type="Node" parent="Player"]
+
+[node name="State" type="Node" parent="Player/StateMachine"]
+
+[node name="Idle" type="Node" parent="Player/StateMachine"]
+
+[node name="Run" type="Node" parent="Player/StateMachine"]
+
+[node name="Jump" type="Node" parent="Player/StateMachine"]
+
+[node name="Fly" type="Node" parent="Player/StateMachine"]
+
+[node name="Fall" type="Node" parent="Player/StateMachine"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
