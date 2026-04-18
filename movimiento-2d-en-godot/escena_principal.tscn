@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcq4le7gw116b"]
+[gd_scene load_steps=11 format=3 uid="uid://dcq4le7gw116b"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_8225k"]
 [ext_resource type="Texture2D" uid="uid://c0ysatnxdb5c7" path="res://icon.svg" id="2_0bqur"]
+[ext_resource type="Script" path="res://idle.gd" id="3_3ov4b"]
+[ext_resource type="Script" path="res://state_machine.gd" id="3_37dca"]
+[ext_resource type="Script" path="res://run.gd" id="4_8a725"]
+[ext_resource type="Script" path="res://jump.gd" id="5_ivis7"]
+[ext_resource type="Script" path="res://fly.gd" id="6_2c0om"]
+[ext_resource type="Script" path="res://fall.gd" id="6_3fqo1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1iym"]
 size = Vector2(66, 66.5)
@@ -13,6 +19,7 @@ size = Vector2(1061, 20)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_8225k")
+multipl_caida = 1.2
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(157, 468)
@@ -24,18 +31,22 @@ position = Vector2(158, 467)
 shape = SubResource("RectangleShape2D_r1iym")
 
 [node name="StateMachine" type="Node" parent="Player"]
-
-[node name="State" type="Node" parent="Player/StateMachine"]
+script = ExtResource("3_37dca")
 
 [node name="Idle" type="Node" parent="Player/StateMachine"]
+script = ExtResource("3_3ov4b")
 
 [node name="Run" type="Node" parent="Player/StateMachine"]
+script = ExtResource("4_8a725")
 
 [node name="Jump" type="Node" parent="Player/StateMachine"]
+script = ExtResource("5_ivis7")
 
 [node name="Fly" type="Node" parent="Player/StateMachine"]
+script = ExtResource("6_2c0om")
 
 [node name="Fall" type="Node" parent="Player/StateMachine"]
+script = ExtResource("6_3fqo1")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

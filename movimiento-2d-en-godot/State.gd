@@ -6,4 +6,4 @@ var state_machine
 
 func enter():pass
 func exit():pass
-func update(delta):pass
+func update(_delta):pass
